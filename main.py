@@ -108,59 +108,6 @@ def save_indexed_docs(docs):
     with open(PROCESSED_DOCS_FILE, "wb") as f:
         pickle.dump(docs, f)
 
-def append_text_to_file(file_path, text):
-    """
-    Appends text to the end of a file.
-    If the file doesn't exist, it will be created.
-
-    Args:
-        file_path (str): Path to the file where the text will be saved.
-        text (str): Text to append.
-    """
-    with open(file_path, "a", encoding="utf-8") as f:
-        f.write(text + "\n")
-
-class SemanticParagraphSplitter:
-    def __init__(self, embedding_model=None, max_title_words=20):
-        self.embedding_model = embedding_model
-        self.max_title_words = max_title_words
-        self.invalid_title_tokens = [":", "-"]
-
-    def split(self, document: Document):
-        text = document.page_content
-        lines = [line.strip() for line in text.splitlines() if line.strip()]
-
-        chunks = []
-        current_title = None
-        current_content = []
-
-        def is_title(line):
-            if len(line.split()) > self.max_title_words:
-                return False
-            if any(token in line for token in self.invalid_title_tokens):
-                return False
-            return True
-
-        for line in lines:
-            if is_title(line):
-                if current_title and current_content:
-                    chunk_text = "# " + current_title + "\n\n" + "\n".join(current_content)
-                    chunks.append(Document(page_content=chunk_text.strip(), metadata=document.metadata))
-                    append_text_to_file('chunks.txt', chunk_text.strip())
-                current_title = line
-                current_content = []
-            else:
-                current_content.append(line)
-
-        # Add the last chunk
-        if current_title and current_content:
-            chunk_text = "# " + current_title + "\n\n" + "\n".join(current_content)
-            chunks.append(Document(page_content=chunk_text.strip(), metadata=document.metadata))
-            append_text_to_file('chunks.txt', chunk_text.strip())
-
-        print(f"[✓] Generated {len(chunks)} chunks based on titles and paragraphs.")
-        return chunks
-
 def chat():
     llm = ChatOCIGenAI(
         model_id="meta.llama-3.1-405b-instruct",
@@ -182,8 +129,6 @@ def chat():
         './Manuals/SOASUITE.pdf',
         './Manuals/SOASUITEHL7.pdf'
     ]
-
-    semantic_splitter = SemanticParagraphSplitter(embedding_model=embeddings)
 
     already_indexed_docs = load_previously_indexed_docs()
     updated_docs = set()
