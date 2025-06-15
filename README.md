@@ -282,6 +282,46 @@ Você pode encontrar os arquivos PDF aqui:
 - [SOASUITEHL7.pdf](https://docs.oracle.com/en/learn/oci-genai-pdf/files/SOASUITEHL7.pdf)
 - [using-integrations-oracle-integration-3.pdf](https://docs.oracle.com/en/cloud/paas/application-integration/integrations-user/using-integrations-oracle-integration-3.pdf)
 
+4. **Configurar OCI Generative AI**
+
+Configure os parâmetros de:
+
+    model_id: Modelo atualizado que se pretende trabalhar com OCI Gen AI
+    service_endpoint: Endpoint da região do OCI Gen AI
+    compartment_id: Seu compartment ID
+    auth_profile: Profile de sua OCI SDK/CLI configurada, normamlmente DEFAULT
+
+Em:
+
+```python
+def semantic_chunking(text):
+    llm = ChatOCIGenAI(
+        model_id="meta.llama-3.1-405b-instruct",
+        service_endpoint="https://inference.generativeai.us-chicago-1.oci.oraclecloud.com",
+        compartment_id="ocid1.compartment.oc1..aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        auth_profile="DEFAULT",
+    )
+```
+    
+E:
+
+```python
+def chat():
+  llm = ChatOCIGenAI(
+    model_id="meta.llama-3.1-405b-instruct",
+    service_endpoint="https://inference.generativeai.us-chicago-1.oci.oraclecloud.com",
+    compartment_id="ocid1.compartment.oc1..aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    auth_profile="DEFAULT",  # Replace with your profile name,
+    model_kwargs={"temperature": 0.7, "top_p": 0.75, "max_tokens": 1000},
+  )
+
+  embeddings = OCIGenAIEmbeddings(
+    model_id="cohere.embed-multilingual-v3.0",
+    service_endpoint="https://inference.generativeai.us-chicago-1.oci.oraclecloud.com",
+    compartment_id="ocid1.compartment.oc1..aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    auth_profile="DEFAULT",  # Replace with your profile name,
+  )
+```
 
 ## 🚀 Como Executar
 
