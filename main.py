@@ -14,7 +14,8 @@ import re
 INDEX_PATH = "./faiss_index"
 PROCESSED_DOCS_FILE = os.path.join(INDEX_PATH, "processed_docs.pkl")
 
-chapter_separator_regex = r"^#{1,6} .+"  # Example for splitting by markdown-style headings: # Title, ## Title etc.
+chapter_separator_regex = r"^(#{1,6} .+|\*\*.+\*\*)$"
+
 
 def split_llm_output_into_chapters(llm_text):
     """
