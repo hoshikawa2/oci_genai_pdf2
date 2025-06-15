@@ -108,6 +108,17 @@ def smart_split_text(text, max_chunk_size=20_000):
     return chunks
 ```
 
+```python
+# Simple criteria: if text ends without punctuation (like . ! ?) or is too short
+if last_chapter and not last_chapter.strip().endswith((".", "!", "?", "\n\n")):
+    print("📌 Last chapter seems incomplete, saving for the next cycle")
+    overflow_buffer = last_chapter
+    chapters = chapters[:-1]  # Don't index the last incomplete chapter yet
+else:
+    overflow_buffer = ""  # Nothing left over
+
+```
+
 ---
 
 ## 📌 3. Semantic Chunking (Separação Semântica via LLM)
