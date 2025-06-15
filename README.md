@@ -75,6 +75,7 @@ LLMs têm limites de tamanho para o texto de entrada. A solução é quebrar o t
 
 - Tentar cortar no final de frases, procurando por `.`, `!`, `?`, ou `\n\n`.
 - Se não houver um ponto de quebra, faz um corte forçado.
+- No loop principal, ainda existe uma estratégia para validar se o capitulo não foi quebrado entre um split e outro. Neste caso, se houver quebra, junta-se os splits para gerar um texto conciso.
 
 ### Código:
 
