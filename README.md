@@ -264,6 +264,13 @@ mkdir ./Manuals
 
 3. **Colocar os PDFs dentro de `./Manuals`.**
 
+Você pode encontrar os arquivos PDF aqui:
+
+- [SOASE.pdf](https://docs.oracle.com/middleware/12211/soasuite/develop/SOASE.pdf)
+- [SOASUITEHL7.pdf](https://docs.oracle.com/en/learn/oci-genai-pdf/files/SOASUITEHL7.pdf)
+- [using-integrations-oracle-integration-3.pdf](https://docs.oracle.com/en/cloud/paas/application-integration/integrations-user/using-integrations-oracle-integration-3.pdf)
+
+
 ## 🚀 Como Executar
 
 ```bash
