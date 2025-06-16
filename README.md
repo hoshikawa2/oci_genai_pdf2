@@ -22,7 +22,7 @@ O código pode ser usado para:
 ## ✅ Pré-requisitos
 
 - Conta na **Oracle Cloud** com acesso ao **OCI Generative AI Service**.
-- Perfil OCI configurado localmente (`~/.oci/config`) com o profile usado no código (exemplo: `LATINOAMERICA`).
+- Perfil OCI configurado localmente (`~/.oci/config`) com o profile usado no código (exemplo: `DEFAULT`).
 - Python 3.8+ com as bibliotecas:
 
 ```bash
