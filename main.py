@@ -181,8 +181,8 @@ def chat():
     )
 
     pdf_paths = [
-        './Manuals/using-integrations-oracle-integration-3-ocr.pdf',
-        './Manuals/SOASUITE.pdf',
+        './Manuals/using-integrations-oracle-integration-3.pdf',
+        './Manuals/SOASE.pdf',
         './Manuals/SOASUITEHL7.pdf'
     ]
 
@@ -268,8 +268,8 @@ def chat():
         {input}
         
         Interpretation rules:
-        Rule 1: SOA SUITE documents: `SOASUITE.pdf` and `SOASUITEHL7.pdf`
-        Rule 2: Oracle Integration (known as OIC) document: `using-integrations-oracle-integration-3-ocr.pdf`
+        Rule 1: SOA SUITE documents: `SOASE.pdf` and `SOASUITEHL7.pdf`
+        Rule 2: Oracle Integration (known as OIC) document: `using-integrations-oracle-integration-3.pdf`
         Rule 3: If the query is not a comparison between SOA SUITE and Oracle Integration (OIC), only consider documents relevant to the product.
         Rule 4: If the question is a comparison between SOA SUITE and OIC, consider all documents and compare between them.
         Mention at the beginning which tool is being addressed: {input}
