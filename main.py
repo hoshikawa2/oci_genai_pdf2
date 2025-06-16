@@ -1,5 +1,6 @@
 from langchain_community.chat_models.oci_generative_ai import ChatOCIGenAI
 from langchain_core.prompts import PromptTemplate
+from langchain_core.runnables import RunnableLambda
 from langchain.schema.output_parser import StrOutputParser
 from langchain_community.embeddings import OCIGenAIEmbeddings
 from langchain_community.vectorstores import FAISS
