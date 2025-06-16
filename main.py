@@ -276,10 +276,14 @@ def chat():
     """
     prompt = PromptTemplate.from_template(template)
 
+    def get_context(x):
+        query = x.get("input") if isinstance(x, dict) else x
+        return retriever.invoke(query)
+
     chain = (
             RunnableMap({
-                "context": lambda x: retriever.invoke(x),
-                "input": lambda x: x if isinstance(x, str) else x.get("input", "")
+                "context": RunnableLambda(get_context),
+                "input": lambda x: x.get("input") if isinstance(x, dict) else x
             })
             | prompt
             | llm
